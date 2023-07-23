@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-color: #f5f5f5;
+            display: flex;
+        }
+
+        .todo-list {
+            width: 500px;
+            margin: 10vh auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .todo-list h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .todo-list form {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .todo-list form input[type="text"] {
+            width: 400px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .todo-list form input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .todo-list ul {
+            list-style: none;
+        }
+
+        .todo-list ul li {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .todo-list ul li:hover {
+            background-color: #f5f5f5;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="todo-list">
+            <h1>To Do List</h1>
+            <form action="todo-list.php" method="post">
+                <input type="text" name="task" placeholder="Enter your task">
+                <input type="submit" name="submit" value="Add Task">
+
+            </form>
+            <ul>
+                <!-- Deletar Task-->
+            </ul>
+        </div>
+    </div>
+    <script>
+        // Funcoes do todo List usando JavaScript e o LocalStorage
+
+        // Selecionando os elementos
+
+        const form = document.querySelector('form');
+        const input = document.querySelector('input');
+        const ul = document.querySelector('ul');
+
+        // Criando um array para armazenar os dados do LocalStorage
+
+        let tasks;
+
+        // Verificando se existe dados no LocalStorage
+
+        if (localStorage.getItem('tasks')) {
+            tasks = JSON.parse(localStorage.getItem('tasks'));
+        } else {
+            tasks = [];
+        }
+
+        // Funcao para renderizar os dados do LocalStorage
+
+        const render = () => {
+            ul.innerHTML = '';
+            tasks.forEach(task => {
+                let li = document.createElement('li');
+                li.innerHTML = task;
+                ul.appendChild(li);
+                let button = document.createElement('button');
+                button.innerHTML = 'X';
+                li.appendChild(button);
+                button.addEventListener('click', removeTask);
+            });
+        }
+
+        // Funcao para adicionar os dados no LocalStorage
+
+        const addTask = (event) => {
+            event.preventDefault();
+            tasks.push(input.value);
+            input.value = '';
+
+            render();
+            saveToStorage();
+        }
+
+        const removeTask = (event) => {
+            tasks.splice(tasks.indexOf(event.target.innerHTML), 1);
+            render();
+            saveToStorage();
+        }
+
+        // Funcao para salvar os dados no LocalStorage
+
+        const saveToStorage = () => {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        // Adicionando o evento de submit no formulario
+
+        form.addEventListener('submit', addTask);
+
+        // Chamando a funcao render para renderizar os dados do LocalStorage
+
+        render();
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -45,7 +45,6 @@ h2, h3{
 .item {
     text-align: center;
     border-radius: 5px;
-    color: white;
     padding: 1rem;
 }
 
@@ -72,4 +71,30 @@ li{
     float: initial;
     padding: 10px;
 
+}
+.contador{
+    text-align: center;
+    font-size: 1.5rem;
+    color: #025E73;
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+
+}
+.btn-contador{
+    background-color: #025E73;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+.btn-contador:hover{
+    background-color: #025E73;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
 }
