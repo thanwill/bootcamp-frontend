@@ -5,13 +5,18 @@ body {
     color: black;
 }
 header{
-    padding:1rem 1rem;
+    padding:1rem;
+}
+hr{
+    border: 0.5px solid #025E73;
 
 }
 main{
-    padding:1rem 1rem;
-    scroll-behavior: auto;
-    height: 100vh;
+    padding:1rem;
+    min-height: 50vh;
+}
+h2, h3{
+    color: #025E73;
 }
 .container {
     margin: auto;
@@ -27,38 +32,26 @@ main{
     text-align: center;
     border-radius: 5px;
     width: 20vw;
-    
     color: white;
-    
 }
 
 .header {
     padding: 10px;
     margin: 10px;
     text-align: center;
-    background: #1abc9c;
+    background: #025E73;
     color: white;
     font-size: 30px;
     border-radius: 5px;
 }
 
-.post {
-    padding: 10px;
-}
 
 footer {
-    display: flex;
-    position: fixed;
     left: 0;
     bottom: 0;
-    width: 100%;
+    text-align: center;
 }
 
-.footer p {
-    margin: 10px auto;
-    padding: 10px;
-
-}
 
 .item {
     
