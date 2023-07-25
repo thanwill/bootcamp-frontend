@@ -35,9 +35,19 @@
 
 .btn-confirm{
     margin-top: 1rem;
-    background-color: #000;
+    background-color: #012030;
     color: #fff;
     border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;    
+}
+.btn-concluir{
+    margin-top: 1rem;
+    background-color: #fff;
+    border: 1px solid #012030;   
+    color: #012030;
+    margin-left: 10px;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;    
