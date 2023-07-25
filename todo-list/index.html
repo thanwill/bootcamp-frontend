@@ -90,7 +90,8 @@
 
 
                 text.innerHTML = task.message;
-                editar.innerHTML = `<i class="bi bi-pencil-square"value="${task.id}"></i>`;
+                editar.innerHTML = `<i class="bi bi-arrow-right-circle" value="${task.id}"></i>`;
+                
 
                 grid.appendChild(text);
                 grid.appendChild(editar);
@@ -99,7 +100,7 @@
 
             // Adicionando o evento de click no icone de lixeira
 
-            let edit = document.querySelectorAll('.bi-pencil-square');
+            let edit = document.querySelectorAll('.bi-arrow-right-circle');
 
             edit.forEach(item => {
                 item.addEventListener('click', showDelete);
