@@ -82,39 +82,37 @@
             tasks.forEach(task => {
                 // reenderiza os dados no HTML
                 let text = document.createElement('div');
-                let deletar = document.createElement('div');
                 let editar = document.createElement('div');
 
                 text.classList.add('grid-item-1');
-                deletar.classList.add('grid-item-2');
-                editar.classList.add('grid-item-3');
+                editar.classList.add('grid-item-2');
 
 
                 text.innerHTML = task.message;
-                deletar.innerHTML = '<i class="bi bi-trash3"></i>';
-                editar.innerHTML = '<i class="bi bi-pencil-square"></i>';
+                editar.innerHTML = `<i class="bi bi-pencil-square"value="${task.id}"></i>`;
 
-                grid.appendChild(text, deletar, editar);
-                grid.appendChild(deletar);
+                grid.appendChild(text);
                 grid.appendChild(editar);
 
             });
 
             // Adicionando o evento de click no icone de lixeira
 
-            let trash = document.querySelectorAll('.bi-trash3');
+            let edit = document.querySelectorAll('.bi-pencil-square');
 
-            trash.forEach(item => {
+            edit.forEach(item => {
                 item.addEventListener('click', showDelete);
             });
 
-            // Adicionando o evento de click no icone de editar
+            /* Adicionando o evento de click no icone de editar
 
             let edit = document.querySelectorAll('.bi-pencil-square');
 
             edit.forEach(item => {
                 item.addEventListener('click', showEdit);
             });
+
+            */
 
 
         }
@@ -127,14 +125,12 @@
                 msgInfo.innerHTML = 'Este campo não pode ficar vázio. Por favor, adicione uma tarefa!';
                 input.focus();
                 return;
-            } else {
-                msgInfo.style.display = 'none';
             }
 
             let task = {
                 message: input.value,
                 status: false,
-                id: Math.random()
+                id: Date.now()
             }
 
             tasks.push(task);
@@ -146,28 +142,30 @@
         const showDelete = () => {
             let modal = document.getElementById('modalDelete');
             modal.style.display = "block";
-            modalBody.innerHTML = 'Deseja excluir a tarefa?';
+
+            // precura a task pelo ID do value do icone de lixeira
+            let task = tasks.find(task => task.id == event.target.getAttribute('value'));
+            
+            modalBody.innerHTML = 'Deseja excluir a tarefa? <br> <strong>' +
+                task.message.substr(0, 10)
+                + '</strong>';
 
             let span = document.getElementsByClassName("close")[0];
-            /// Funcao para remover a tarefa
-            
-
-            // Quando o usuario clicar no botao (x), feche o modal
 
             // Cria um botão para remover a tarefa
             let btn = document.querySelector('.btn-confirm');
             btn.innerHTML = 'Remover';
             btn.onclick = function () {
                 modal.style.display = "none";
-                removeTask(event);
+                removeTask(task.id);
             }
             span.onclick = function () {
                 modal.style.display = "none";
             }
-            
+
         }
-        const removeTask = (event) => {
-            tasks.splice(tasks.indexOf(event.target.innerHTML), 1);
+        const removeTask = (id) => {            
+            tasks = tasks.filter(task => task.id != id);
             render();
             saveToStorage();
         }
@@ -179,14 +177,10 @@
         }
 
         // Adicionando o evento de submit no formulario
-
         form.addEventListener('submit', addTask);
 
         // Chamando a funcao render para renderizar os dados do LocalStorage
-
         render();
-
-
 
     </script>
 

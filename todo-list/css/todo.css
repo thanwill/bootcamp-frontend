@@ -2,8 +2,9 @@
     width: 500px;
     margin: 10vh auto;
     background-color: #fff;
+    border-radius: 10px;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .todo-list h1 {
@@ -17,7 +18,7 @@
     justify-content: center;
     margin-bottom: 20px;
     padding: 2rem;
-    border: 1px solid #ccc;
+    
     gap: 1rem;
 }
 
