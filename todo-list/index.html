@@ -5,17 +5,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="./js/doodle.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./css/modal.css">
     <link rel="stylesheet" href="./css/todo.css">
     <link rel="stylesheet" href="./css/page.css">
+    <link rel="stylesheet" href="./css/canvas.css">
     <title>To Do List</title>
     <style>
         @media screen and (max-width: 400px) {
             body {
                 visibility: hidden;
             }
+        }
+
+        /* Estilizando a div do doodle */
+        #meu-doodle {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Definindo um valor negativo de z-index para colocar o doodle no fundo */
+            /* Qualquer outro estilo que você desejar */
         }
     </style>
 </head>
@@ -36,6 +51,9 @@
 
         </div>
     </div>
+    <footer id="meu-doodle" class="css-doodle">
+
+    </footer>
     <!-- Modal -->
     <div id="modalDelete" class="modal">
         <div class="modal-content">
@@ -45,7 +63,116 @@
             <button class="btn-concluir">Concluir</button>
         </div>
     </div>
-    <script src="./js/modal.js"></script>
+    <script>
+        /* Adicionando o código do CSS Doodle dentro da div específica */
+        document.addEventListener('DOMContentLoaded', function () {
+            var meuDoodle = document.querySelector('#meu-doodle');
+            meuDoodle.innerHTML = `
+            <css-doodle>
+                :doodle {
+    flex: none;
+    @grid: 25x1;
+    @size: 1000px 800px;
+    overflow: hidden;
+  }
+
+  --colors: (#75b9be,#696d7d,#d72638,#f49d37,#140f2d);
+  --color-1: @p(--colors);
+  --color-2: @P;
+  --transform: translateY(@r(2, 90)%);
+  --size: 30px;
+  transform: var(--transform) rotate(0deg);
+  transform-origin: 50% 100%;
+
+  @random(0.5) {
+    animation: swing @r(3, 5)s ease infinite alternate both;
+  }
+  @random(0.5) {
+    animation: swingLeft @r(3, 5)s ease infinite alternate both;
+  }
+
+  @keyframes swing {
+    0% {
+      transform: var(--transform) rotate(0deg);
+    }
+    100% {
+      transform: var(--transform) rotate(1deg);
+    }
+  }
+
+  @keyframes swingLeft {
+    0% {
+      transform: var(--transform) rotate(0deg);
+    }
+    100% {
+      transform: var(--transform) rotate(-1deg);
+    }
+  }
+
+  ::after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: calc(50% - var(--size) / 2);
+    width: var(--size);
+    height: var(--size);
+    background: @p(
+      radial-gradient(@stripe(@m4(var(--color-@pn(1, 2))), transparent 29.7%)),
+      @doodle(
+        @grid: 1 / 100%;
+        ::after {
+          content: "@p(✿,❁,❀,❃,❊)";
+          position: absolute;
+          top: -4px;
+          left: 50%;
+          transform: translate3d(-50%, 0, 0);
+          font-size: 40px;
+          color: transparent;
+          background-image: radial-gradient(var(--color-1) 20%, var(--color-2) calc(20% + 0.5px));
+          -webkit-background-clip: text;
+        }
+      ),
+      @doodle(
+        @grid: 1 / 100%;
+        ::after {
+          content: "@p(🌸,🌼)";
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate3d(-50%, 0, 0);
+          font-size: 28px;
+          color: transparent;
+          background-image: radial-gradient(var(--color-1) 20%, var(--color-2) calc(20% + 0.5px));
+          -webkit-background-clip: text;
+        }
+      )
+    );
+  }
+
+  background: @doodle(
+    @grid: 1x40;
+    background: linear-gradient(90deg, @stripe(transparent, @p(--colors) 2px, transparent));
+
+    @nth(1, 2) {
+      ::before { display: none; }
+    }
+
+    @random(.5) {
+      ::before {
+        content: "";
+        @place: 10px center;
+        @size: 50% 100%;
+        border-radius: 0 100% 0 100%;
+        background: @p(--colors);
+        -webkit-box-reflect: @p(right, initial);
+      }
+    }
+  );
+            </css-doodle>
+          `;
+        });
+    </script>
+
     <script>
 
         // Selecionando os elementos
@@ -91,7 +218,7 @@
 
                 text.innerHTML = task.message;
                 editar.innerHTML = `<i class="bi bi-arrow-right-circle" value="${task.id}"></i>`;
-                
+
 
                 grid.appendChild(text);
                 grid.appendChild(editar);
@@ -104,7 +231,7 @@
 
             edit.forEach(item => {
                 item.addEventListener('click', showDelete);
-            });            
+            });
 
         }
 
@@ -136,7 +263,7 @@
 
             // precura a task pelo ID do value do icone de lixeira
             let task = tasks.find(task => task.id == event.target.getAttribute('value'));
-            
+
             modalBody.innerHTML = 'O que deseja fazer com a tarefa? <br> <strong>' +
                 task.message.substr(0, 10)
                 + '</strong>';
@@ -155,7 +282,7 @@
             }
 
         }
-        const removeTask = (id) => {            
+        const removeTask = (id) => {
             tasks = tasks.filter(task => task.id != id);
             render();
             saveToStorage();

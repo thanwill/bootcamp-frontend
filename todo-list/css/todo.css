@@ -1,10 +1,11 @@
 .todo-list {
-    width: 500px;
+    max-width: 500px;
     margin: 10vh auto;
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
     border-radius: 10px;
+    position: relative;
 }
 
 .todo-list h1 {
