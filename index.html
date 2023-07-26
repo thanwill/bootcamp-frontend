@@ -7,42 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documento</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Importando as bibliotecas via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css">
+
+
 </head>
 
-<body>
+<body id="inicio">
     <header class="header">
         <h1>Bootcamp Inter <br> Frontend Developer</h1>
     </header>
     <main>
         <section>
-            <header>
-                <h2>
-                    # Atividades
-                </h2>
-            </header>
-            
-            <hr>
-            <article class="post">
-                <header>
-                    <h3>Titulo do post</h3>
-                    <p>Lorem ipsum dolor sit amet c nsectetur adipisicing elit. Minima laboriosam illum sint qui harum
-                        recusandae veniam ipsum eum repellat porro, earum fugiat perspiciatis ex repellendus a suscipit
-                        debitis! Laboriosam, ipsa.</p>
-                </header>
-            </article>
-            <hr>
-            <article class="post">
+
+
+            <article id="contador-page" class="post">
                 <header>
                     <h3>Contador</h3>
                     <div class="contador">
-                        <div class="btn-contador" id="btn-mais">+</div>
+                        <button class="btn-contador" id="btn-mais">+</button>
                         <div class="btn-contador" id="num-contador">0</div>
-                        <div class="btn-contador" id="btn-menos">-</div>
+                        <button class="btn-contador" id="btn-menos">-</button>
                     </div>
                 </header>
             </article>
             <hr>
-            <article class="post">
+            <article id="sintaxe-page" class="post">
                 <header>
                     <h3>Sintaxe e Operadores</h3>
                     <ol>
@@ -51,22 +41,194 @@
                         <li>Confira se a soma dos números é maior que 10 ou menor que 20.</li>
                         <li>Retorne uma string dizendo "Os números num1 e num2 não/são iguais. Sua soma é soma, que é
                             maior/menor que 10 e maior/menor que 20".</li>
-                        </ul>
-                        <div class="container">
-                            <div class="item">
-                                <input type="number" id="num1" placeholder="Digite um número">
-                            </div>
-                            <div class="item">
-                                <input type="number" id="num2" placeholder="Digite um número">
-                            </div>
-                            <div class="item">
-                                <button id="btn-calcular">Calcular</button>
-                            </div>
+                    </ol>
+                    <div class="container">
+                        <div class="item">
+                            <input type="number" id="num1" placeholder="Digite um número">
                         </div>
+                        <div class="item">
+                            <input type="number" id="num2" placeholder="Digite um número">
+                        </div>
+                        <div class="item">
+                            <button id="btn-calcular">Calcular</button>
+                        </div>
+                    </div>
                 </header>
             </article>
+            <hr>
+            <article id="palindromo-page" class="post">
+                <header>
+                    <h3>Palíndromo</h3>
+                    <ol>
+                        <li>Verifique, de duas maneiras diferentes entre si, se uma String é um palíndromo.</li>
+
+                        <code>Palíndromo: frase ou palavra que se pode ler, indiferentemente, da esquerda para a direita ou
+                            vice-versa (ex.: raiar, ama, ovo, radar)</code>
+                    </ol>
+                    <div class="container">
+                        <div class="item">
+                            <input type="text" id="palavra" placeholder="Digite uma palavra">
+                        </div>
+                        <div class="item">
+                            <button id="btn-palavra">Verificar</button>
+                        </div>
+                        <div class="item">
+                            <span id="resultado"></span>
+                        </div>
+                    </div>
+
+                </header>
+
+            </article>
+            <article id="funcoes-page" class="post">
+                <header>
+                    <h3>Funções em Javascript</h3>
+                    <ol>
+                        <li>Tipos de funções.</li>
+                        <li>Parâmetros</li>
+                        <li>Loops</li>
+                        <li>Palavra reservada <strong>this</strong></li>
+                    </ol>
+                </header>
+            </article>
+            <article id="autoinvocavel-page" class="post">
+                <header>
+                    <h3>Função autoinvocável</h3>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+function() {
+ let name = "Digital Innovation One"
+  return name;
+}(); // "Digital Innovation One"
+
+(
+ function(a, b) {
+  return a + b;
+}
+)(1, 2); // retorna 3
+
+const soma3 = (
+ function( ) {
+  return a + b;
+ }
+)(1, 2); 
+console. log(soma3) // retorna 3
+    </code>
+</pre>
+                </header>
+            </article>
+            <article id="callback-page" class="post">
+                <header>
+                    <h3>Função Callbacks</h3>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+const calc = function(operaçao, numi, num2){
+    return operacao( num1, num2);
+}
+
+const soma = function( num1, num2) {
+  return num1 + num2;
+}
+
+const sub = function(num1, num2) {
+  return num1 - num2;
+}
+
+const resultSoma = calc(soma, 1, 2);
+const resultSub = calc(sub, 1, 2);
+
+console. log( resultSub); // -1
+console. log( resultSona); // 3
+</code>
+</pre>
+                </header>
+            </article>
+            <article id="valores-padrao-page" class="post">
+                <header>
+                    <h3>Valores padrão de parâmetros</h3>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+function exponencial(array, expoente = 2) {
+    const resultado = [];
+    
+    for(let i = 0; i < array.length; i++) {
+        resultado.push(array[i] ** expoente);
+    }
+
+    return resultado;
+}
+</code>
+</pre>
+                </header>
+            </article>
+            <article id="arguments-page" class="post">
+                <header>
+                    <h3>Objeto "Arguments"</h3>
+                    <p>Um array com todos os parâmetros passados quando a função foi invocada.</p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+function findMax(){
+    // define max como o menor valor possível
+    let max = -Infinity;
+    // percorre todos os argumentos
+    for(let i = 0; i < arguments.length; i++){
+        if(arguments[i] > max){
+            max = arguments[i];
+        }
+    }
+    return max;
+    // findMax(1, 123, 500, 115, 44, 88);
+    // 500
+}
+</code>
+</pre>
+                </header>
+            </article>
+            <article id="arrays-page" class="post">
+                <header>
+                    <h3>Arrays</h3>
+                    <p><strong>Spread</strong>: uma forma de lidar separadamente com elementos. O que era para ser um
+                        array se torna um elemento independente.</p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+function sum(x, y, z){
+    return x + y + z;
+}
+const numbers = [1, 2, 3];
+console. log(sum(...numbers)); // 6
+</code>
+</pre>
+                    <p>os três pontinhos antes do array fazem com que cada elemento do array seja passado como um
+                        argumento separado para a função</p>
+
+                </header>
+            </article>
+
         </section>
     </main>
+    <div class="btn-flutuante">
+        <button id="btn-menu">Menu</button>
+    </div>
+
+    <div class="menu-flutuante" id="menu">        
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="/todo-list/index.html">Tarefas</a></li>
+            <li><a href="#contador-page">Contador</a></li>
+            <li><a href="#sintaxe-page">Sintaxe</a></li>
+            <li><a href="#palindromo-page">Palíndromo</a></li>
+            <li><a href="#funcoes-page">Funções</a>
+                <ol>
+                    <li><a href="#autoinvocavel-page">Autoinvocável</a></li>
+                    <li><a href="#callback-page">Callback</a></li>
+                    <li><a href="#valores-padrao-page">Valores padrão</a></li>
+                    <li><a href="#arguments-page">Arguments</a></li>
+                </ol>
+            </li>
+            <li><a href="#arrays-page">Arrays</a></li>
+
+        </ul>
+    </div>
 
     <footer class="">
         <div class="">
@@ -88,27 +250,10 @@
 
 
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-javascript.min.js"></script>
 
     <script src="./assets/js/script.js"></script>
-    <script>
-        const btnCalcular = document.querySelector('#btn-calcular');
-        const num1 = document.querySelector('#num1');
-        const num2 = document.querySelector('#num2');
-
-        function validarNumero (num1, num2) {
-            if (num1 === num2) {
-                return `Os números ${num1} e ${num2} são iguais. Sua soma é ${num1 + num2}, que é maior que 10 e maior que 20`;
-            } else {
-                return `Os números ${num1} e ${num2} não são iguais. Sua soma é ${num1 + num2}, que é maior que 10 e maior que 20`;
-            }
-        }
-
-        btnCalcular.addEventListener('click', () => {
-            const resultado = validarNumero(num1.value, num2.value);
-            alert(resultado);
-        });
-
-    </script>
 </body>
 
 </html>
