@@ -15,7 +15,6 @@ btnMenu.addEventListener('click', function(){
             menu.classList.remove('active');
         }
     } );
-
 } );
 
 let contador = 0;

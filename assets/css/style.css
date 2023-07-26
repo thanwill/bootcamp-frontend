@@ -175,3 +175,48 @@ pre{
 }
 
 /* Estilize o menu conforme suas preferências */
+
+/* Estilo de tabela */
+
+/* Estilo base para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  
+  
+  /* Estilo para as células do cabeçalho */
+  th {
+    background-color: #025E73;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Estilo para as células da tabela */
+  td {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Estilo para linhas pares */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Estilo para linhas ímpares (opcional, já que as outras linhas ficarão brancas por padrão) */
+  tr:nth-child(odd) {
+    background-color: #fff;
+  }
+  
+  .msg-alert{
+    background-color: #025E73;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+

@@ -189,6 +189,8 @@ function findMax(){
                     <h3>Arrays</h3>
                     <p><strong>Spread</strong>: uma forma de lidar separadamente com elementos. O que era para ser um
                         array se torna um elemento independente.</p>
+                    <p>Os três pontinhos antes do array fazem com que cada elemento do array seja passado como um
+                        argumento separado para a função</p>
                     <pre>
 <code id="codeInput" class="language-javascript">
 function sum(x, y, z){
@@ -198,10 +200,366 @@ const numbers = [1, 2, 3];
 console. log(sum(...numbers)); // 6
 </code>
 </pre>
-                    <p>os três pontinhos antes do array fazem com que cada elemento do array seja passado como um
-                        argumento separado para a função</p>
+                    <p>
+                        <strong>Rest</strong>: combina vários elementos (argumentos) em um array.
+                    </p>
+                    <p>O que era um elemento independente se torna parte de um array.</p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+function confereTamanho(...args){
+    console. log(args.length);
+}
+
+confereTamanho(); // 0
+confereTamanho(1, 2, 3); // 3
+confereTamanho(1, "a", true, {a: 1, b: 2}); // 4
+</code>
+</pre>
 
                 </header>
+            </article>
+            <article id="desestruturacao-page" class="post">
+                <header>
+                    <h3>Object Destructuring</h3>
+                    <p>Permite extrair dados de arrays ou objetos em variáveis distintas.</p>
+                    <p>Entre chaves { }, podemos filtrar apenas os dados que nos interessam em um objeto.</p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+const user = {
+    id : 42,
+    name: "Dio",
+    fullName :{
+        firstName: "Digital",
+        lastName: "Innovation One"
+    }
+    age: 5,
+    address: {
+        city: "Rio de Janeiro",
+        state: "RJ"
+    }
+}
+
+function userId({id}) {
+    return id;
+}
+
+function getFullName({fullName: 
+    {firstName: first, lastName: last}}) {
+    return `${first} ${last}`;
+}
+
+userId(user); // 42
+getFullName(user); // "Dio Digital Innovation One"
+</code>
+</pre>
+                </header>
+            </article>
+
+            <article id="loops-page" class="post">
+                <header>
+                    <h3>Loops</h3>
+
+                    <p><strong>For</strong>: é um loop dentro de elementos interáveis (arrays, strings)</p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+function multiplicaPorDois(array){
+    let multiplicados = [];
+    for(let i = 0; i < array.length; i++){
+        multiplicados.push(array[i] * 2);
+    }
+    return multiplicados;
+}
+const meuArray = [1, 2, 3];
+console.log(multiplicaPorDois(meuArray)); // [2, 4, 6]
+</code>
+</pre>
+                    <p>
+                        <strong>For ... in</strong>: é um loop entre propriedades enumeráveis de um objeto.
+                    </p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+funtion loopObjeto(objeto){
+    for(let prop in objeto){
+        console.log(prop);
+        // console.log(objeto[prop]);
+    }
+}
+const meuObjeto = {
+    nome: "Dio",
+    idade: 5,
+    cidade: "Rio de Janeiro"
+}
+loopObjeto(meuObjeto);
+// nome, idade, cidade
+</code>
+
+</pre>
+                    <p><strong>For ... of</strong> : loop entre estruturas interáveis (arrays, strings)</p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+function loopArray(array){
+    for(let valor of array){
+        console.log(valor);
+    }
+}
+const meuArray = [1, 2, 3];
+loopArray(meuArray);
+// 1, 2, 3
+</code>
+</pre>
+                </header>
+
+
+                <p>
+                    <strong>While</strong>: loop que executa enquanto a condição for verdadeira.
+                </p>
+                <pre>
+<code id="codeInput" class="language-javascript">
+function loopWhile(array){
+    let i = 0;
+    while(i < array.length){
+        console.log(array[i]);
+        i++;
+    }
+}
+const meuArray = [1, 2, 3];
+loopWhile(meuArray);
+// 1, 2, 3
+</code>
+</pre>
+                <p>
+                    <strong>Do ... while</strong>: loop que executa primeiro e depois verifica a condição. Mas sempre
+                    executará pelo menos uma vez.
+                </p>
+                <pre>
+<code id="codeInput" class="language-javascript">
+function loopDoWhile(array){
+    let i = 0;
+    do{
+        console.log(array[i]);
+        i++;
+    } while(i < array.length);
+}
+const meuArray = [1, 2, 3];
+loopDoWhile(meuArray);
+// 1, 2, 3
+</code>
+</pre>
+            </article>
+            <article id="this-page" class="post">
+                <header>
+                    <h3>This: o que é?</h3>
+                    <p>
+                        <strong>This</strong>: é uma palavra reservada que se refere ao objeto que está executando o
+                        código.
+                    </p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+ const pessoa = {
+    nome: "Dio",
+    idade: 5,
+    cidade: "Rio de Janeiro",
+    bio: function(){
+        return `${this.nome}, ${this.idade} anos, ${this.cidade}`;
+    }
+}
+
+pessoa.bio() // "Dio, 5 anos, Rio de Janeiro"
+
+</code>
+</pre>
+                    <p>
+                        Seu valor pode mudar de acordo com o lugar no código onde é chamado.
+                    </p>
+                    <table>
+                        <thead>
+                            <th>Contexto</th>
+                            <th>Referência</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Em um objeto (método)</td>
+                                <td>Próprio objeto dono do método</td>
+                            </tr>
+                            <tr>
+                                <td>Sozinha</td>
+                                <td>Objeto global (em navegadores, windows)</td>
+                            </tr>
+                            <tr>
+                                <td>Em uma função</td>
+                                <td>Global (em navegadores, windows)</td>
+                            </tr>
+                            <tr>
+                                <td>Em uma função com 'use strict'</td>
+                                <td>Undefined</td>
+                            </tr>
+                            <tr>
+                                <td>Em um evento</td>
+                                <td>Elemento que recebeu o evento</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>Manipulando seu valor</h3>
+                    <p>
+                        <strong>Call</strong>: chama uma função com um dado valor this e argumentos passados
+                        individualmente.
+                    </p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+const pessoa = {
+    nome: "Dio",
+    idade: 5,
+    cidade: "Rio de Janeiro"   
+}
+const animal = {
+    nome: "Gato",
+    idade: 2,
+    cidade: "São Paulo"
+}
+
+function bio(){
+    return `${this.nome}, ${this.idade} anos, ${this.cidade}`;
+}
+
+bio.call(pessoa); // "Dio, 5 anos, Rio de Janeiro"
+bio.call(animal); // "Gato, 2 anos, São Paulo"
+</code>
+</pre>
+                    <p>
+                        <strong>Apply</strong>: o método apply() é usado para chamar uma função com um valor específico
+                        para isso (o contexto) e uma matriz (ou um objeto semelhante a uma matriz) de argumentos. É uma
+                        das maneiras de invocar uma função, junto com call() e bind()
+                    </p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+const pessoa = {
+    nome: "Dio",
+    idade: 5,
+    cidade: "Rio de Janeiro"
+}
+const animal = {
+    nome: "Gato",
+    idade: 2,
+    cidade: "São Paulo"
+}
+
+function bio(idade, cidade){
+    return `${this.nome}, ${this.idade} anos, ${this.cidade}`;
+}
+
+bio.apply(pessoa, [12, "Joinville"]); // "Dio, 12 anos, Joinville"
+
+    </code>
+    </pre>
+                    <p>
+                        <strong>Bind </strong>: Em JavaScript, o método bind() é usado para criar uma nova função que,
+                        quando chamada, tem um valor de this predefinido (o contexto) e, opcionalmente, um ou mais
+                        argumentos também predefinidos.
+
+
+                    </p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+const person = {
+    firstName: 'John',
+    lastName: 'Doe',
+    getFullName: function() {
+        return this.firstName + ' ' + this.lastName;
+    }
+    };
+    
+    const logFullName = function() {
+    console.log(this.getFullName());
+    };
+    
+    // Sem o bind, o valor de 'this' na função logFullName seria 'undefined'.
+    // Ao usar bind, vinculamos o contexto do 'this' à função person.getFullName.
+    const boundLogFullName = logFullName.bind(person);
+    
+    boundLogFullName(); // Output: "John Doe"
+    </code>
+    </pre>
+
+
+
+                </header>
+            </article>
+            <article id="arrow-page" class="post">
+                <header>
+                    <h3>Arrow Functions</h3>
+                    <p>
+                        <strong>Arrow Functions</strong>: são funções anônimas e sempre são expressões. Não podem ser
+                        usadas como construtoras.
+                    </p>
+                    <p>
+                    <ol>
+                        <li>Caso exista apenas uma linha, pode dispensar as chaves e o return.</li>
+                        <li>Caso exista apenas um parâmetro, pode dispensar os parênteses.</li>
+                    </ol>
+                    </p>
+                    <p class="msg-alert">
+                        Arrow function NÃO faz hoisting.
+                        hoisting é o comportamento padrão do JavaScript de mover declarações para o topo.
+                    </p>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+const soma = (a, b) => a + b;
+soma(2, 2); // 4
+
+const sayHello = name => `Hello ${name}`;
+
+</code>
+</pre>
+                    <h3>Restições</h3>
+                    <ol>
+                        <li>"this"sempre será o objeto global. Métodos para modificar seu valor não irão funcionar </li>
+                        <li>Não existe o objeto "arguments"</li>
+                        <li>Não pode ser usada como construtora</li>
+                    </ol>
+                </header>
+            </article>
+            <article class="post" id="atividades-funcoes">
+                <header>
+                    <h3>Alunos aprovados</h3>
+                    <ol>
+                        <li>Crie uma função que recebe o array alunos e um número que irá representar a média final;
+                        </li>
+                        <li>Percorra o array e popule um novo array auxiliar apenas com os alunos cujas notas são
+                            maiores ou iguais à média final;</li>
+                        <li>Utilize a técnica "object destructuring" para manipular as propriedades desejadas de cada
+                            aluno.</li>
+                        <script src="./assets/js/atividade-funcoes.js"></script>
+                    </ol>
+                    <h3>Função com This</h3>
+                    <ol>
+                        <li>Dada a função calculaIdade, utilize os métodos call e apply para modificar o valor de this.
+                            Crie seus próprios objetos para esta atividade!
+                        </li>
+                    </ol>
+                    <pre>
+<code id="codeInput" class="language-javascript">
+    function calculaIdade(anos) {
+        console.log(`${this.nome} daqui a ${anos} anos, terá ${this.idade + anos} anos de idade.`);
+    }
+
+    const gerente = {
+        nome: "Maria",
+        idade: 35,
+    };
+    
+    const motorista = {
+        nome: "João",
+        idade: 19,
+    };
+
+    calculaIdade.call(gerente, 3); // Daqui a 3 anos, Maria terá 38 anos de idade.
+
+    calculaIdade.apply(motorista, [3]); // Daqui a 3 anos, João terá 22 anos de idade.
+</code>
+                    </pre>
+                </header>
+
+
             </article>
 
         </section>
@@ -210,7 +568,7 @@ console. log(sum(...numbers)); // 6
         <button id="btn-menu">Menu</button>
     </div>
 
-    <div class="menu-flutuante" id="menu">        
+    <div class="menu-flutuante" id="menu">
         <ul>
             <li><a href="#inicio">Início</a></li>
             <li><a href="/todo-list/index.html">Tarefas</a></li>
@@ -226,6 +584,12 @@ console. log(sum(...numbers)); // 6
                 </ol>
             </li>
             <li><a href="#arrays-page">Arrays</a></li>
+            <li><a href="#desestruturacao-page">Desestruturação</a></li>
+            <li><a href="#loops-page">Loops</a></li>
+            <li><a href="#this-page">This</a></li>
+            <li><a href="#classes-page">Classes</a></li>
+            <li><a href="#promises-page">Promises</a></li>
+            <li><a href="#arrow-page">Atividade 2</a></li>
 
         </ul>
     </div>
